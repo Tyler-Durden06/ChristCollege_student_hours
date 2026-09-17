@@ -25,7 +25,7 @@ st.title("Student Pass Predictor")
 st.write("Enter the number of hours studied to predict the result.")
 
 study_hours = st.number_input(
-    "Study hours",
+    "Study Hours",
     min_value=0.0,
     step=0.5
 )
@@ -33,7 +33,7 @@ study_hours = st.number_input(
 if st.button("Predict"):
 
     input_data = pd.DataFrame({
-        "StudyHours": [study_hours]
+        "Study Hours": [study_hours]
     })
 
     prediction = model.predict(input_data)[0]
