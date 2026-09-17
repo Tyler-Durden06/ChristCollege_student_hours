@@ -32,8 +32,8 @@ study_hours = st.number_input(
 )
 
 # Input 2: Attendance
-attendance = st.number_input(
-    "Attendance (%)",
+attendence = st.number_input(
+    "Attendence (%)",
     min_value=0.0,
     max_value=100.0,
     value=75.0,
@@ -46,7 +46,7 @@ if st.button("Predict"):
     # Create input data
     input_data = pd.DataFrame({
         "Study Hours": [study_hours],
-        "Attendance": [attendance]
+        "Attendence": [attendance]
     })
 
     # Make prediction
