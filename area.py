@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 from pathlib import Path
 
-# Get the current folder
+# Get current folder
 BASE_DIR = Path(__file__).resolve().parent
 
 # Model path
@@ -17,21 +17,25 @@ st.title("House Price Predictor")
 
 st.write("Enter the house details to make a prediction.")
 
-# Input: Area
+# Area - Maximum 6000 sq.ft
 area = st.number_input(
     "Area (sq.ft)",
     min_value=100.0,
+    max_value=6000.0,
+    value=1000.0,
     step=100.0
 )
 
-# Input: Bedrooms
+# Number of Bedrooms - Maximum 5
 bedroom = st.number_input(
     "Number of Bedrooms",
     min_value=1,
+    max_value=5,
+    value=2,
     step=1
 )
 
-# Input: Age
+# Age of House
 age = st.number_input(
     "Age of House (years)",
     min_value=0,
@@ -41,14 +45,12 @@ age = st.number_input(
 # Prediction
 if st.button("Predict"):
 
-    # Create input DataFrame
     input_data = pd.DataFrame({
         "Area": [area],
         "Bedroom": [bedroom],
         "Age": [age]
     })
 
-    # Make prediction
     prediction = model.predict(input_data)[0]
 
     st.success(f"Predicted Result: {prediction}")
