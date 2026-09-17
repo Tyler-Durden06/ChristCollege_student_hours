@@ -46,7 +46,7 @@ if st.button("Predict"):
     # Create input data
     input_data = pd.DataFrame({
         "Study Hours": [study_hours],
-        "Attendence": [attendance]
+        "Attendance": [attendance]
     })
 
     # Make prediction
