@@ -3,15 +3,31 @@ import pandas as pd
 import joblib
 from pathlib import Path
 
-# Load model
-model_path = Path(__file__).resolve().parent / "House_price_model.pkl"
+# ------------------------------------------
+# Load Model
+# ------------------------------------------
+
+BASE_DIR = Path(__file__).resolve().parent
+
+model_path = BASE_DIR / "House_price_model.pkl"
+
 model = joblib.load(model_path)
+
+
+# ------------------------------------------
+# Title
+# ------------------------------------------
 
 st.title("House Price Predictor")
 
-st.write("Enter the house details to predict the price.")
+st.write("Enter the details of the house.")
 
+
+# ------------------------------------------
 # Area
+# Maximum = 6000 sq.ft
+# ------------------------------------------
+
 area = st.number_input(
     "Area (sq.ft)",
     min_value=600,
@@ -20,7 +36,11 @@ area = st.number_input(
     step=50
 )
 
+
+# ------------------------------------------
 # Total Floors
+# ------------------------------------------
+
 floors = st.number_input(
     "Total Floors",
     min_value=1,
@@ -29,7 +49,12 @@ floors = st.number_input(
     step=1
 )
 
+
+# ------------------------------------------
 # Bedrooms
+# Maximum = 5
+# ------------------------------------------
+
 bedrooms = st.number_input(
     "Number of Bedrooms",
     min_value=1,
@@ -37,6 +62,11 @@ bedrooms = st.number_input(
     value=2,
     step=1
 )
+
+
+# ------------------------------------------
+# Prediction
+# ------------------------------------------
 
 if st.button("Predict Price"):
 
@@ -46,8 +76,10 @@ if st.button("Predict Price"):
         "Bedrooms": [bedrooms]
     })
 
+    # Prediction
     prediction = model.predict(input_data)[0]
 
+    # Display result
     st.success(
         f"Predicted House Price: ₹{prediction:.2f} Lakhs"
     )
